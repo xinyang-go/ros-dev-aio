@@ -117,4 +117,4 @@ jobs:
             ROS_DISTRO=galactic
           platforms: linux/amd64, linux/arm64
           push: true
-          tags: ghcr.io/xinyang-go/ros-dev-aio:noetic
+          tags: ghcr.io/xinyang-go/ros-dev-aio:galactic
