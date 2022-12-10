@@ -16,12 +16,14 @@ RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test \
     && apt-get install -y gcc-11 g++-11 gdb ccache build-essential ninja-build \
     && update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 11 \
     && update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-11 11 \
+    && apt-get autoremove -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 # install llvm
 RUN wget https://apt.llvm.org/llvm.sh \
-    && bash llvm.sh 15 all \
+    && bash llvm.sh 15 \
     && rm llvm.sh \
+    && apt-get autoremove -y clang-15 lldb-15 lld-15 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* 
 ENV PATH="/usr/lib/llvm-15/bin:${PATH}"
@@ -30,6 +32,7 @@ RUN wget https://apt.kitware.com/kitware-archive.sh \
     && bash kitware-archive.sh \
     && apt-get install -y cmake \
     && rm kitware-archive.sh \
+    && apt-get autoremove -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 # create user
