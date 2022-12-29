@@ -19,7 +19,7 @@ RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test \
     && apt-get autoremove -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
-# install llvm
+# install clangd
 RUN wget https://apt.llvm.org/llvm.sh \
     && bash llvm.sh 15 \
     && rm llvm.sh \
@@ -44,6 +44,6 @@ RUN groupadd --gid $USER_GID $USERNAME \
     && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME
 USER $USERNAME
-WORKDIR /home/user
+WORKDIR /home/$USERNAME
 # setup ros enviroment
 RUN echo source /opt/ros/$ROS_DISTRO/setup.bash >> /home/$USERNAME/.bashrc
