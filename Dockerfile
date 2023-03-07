@@ -35,6 +35,12 @@ RUN wget https://apt.kitware.com/kitware-archive.sh \
     && apt-get autoremove -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+# install libraries
+RUN apt-get update \
+    && apt-get install -y ros-${ROS_DISTRO}-pcl-ros ros-${ROS_DISTRO}-vision-opencv \
+    && apt-get autoremove -y \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 # create user
 ARG USERNAME=user
 ARG USER_UID=1000
