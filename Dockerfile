@@ -1,5 +1,5 @@
 ARG ROS_DISTRO=noetic
-FROM ros:$ROS_DISTRO
+FROM osrf/ros:$ROS_DISTRO-desktop-full
 # set deb non-interactive
 ENV DEBIAN_FRONTEND=noninteractive
 # install basic tools
