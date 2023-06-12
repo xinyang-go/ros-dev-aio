@@ -84,7 +84,7 @@ jobs:
           push: true
           tags: ghcr.io/xinyang-go/ros-dev-aio:noetic
 
-  docker-build-and-push-galactic:
+  docker-build-and-push-humble:
     runs-on: ubuntu-latest
     permissions:
       contents: read
