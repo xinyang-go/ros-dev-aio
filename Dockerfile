@@ -1,5 +1,5 @@
 ARG ROS_DISTRO=noetic
-FROM ros:$ROS_DISTRO
+FROM osrf/ros:$ROS_DISTRO-desktop-full
 # set deb non-interactive
 ENV DEBIAN_FRONTEND=noninteractive
 # install basic tools
@@ -32,6 +32,12 @@ RUN wget https://apt.kitware.com/kitware-archive.sh \
     && bash kitware-archive.sh \
     && apt-get install -y cmake \
     && rm kitware-archive.sh \
+    && apt-get autoremove -y \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+# install libraries
+RUN apt-get update \
+    && apt-get install -y ros-${ROS_DISTRO}-pcl-ros ros-${ROS_DISTRO}-vision-opencv \
     && apt-get autoremove -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
