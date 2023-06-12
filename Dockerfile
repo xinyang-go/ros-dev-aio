@@ -21,12 +21,12 @@ RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test \
     && rm -rf /var/lib/apt/lists/*
 # install clangd
 RUN wget https://apt.llvm.org/llvm.sh \
-    && bash llvm.sh 15 \
+    && bash llvm.sh 16 \
     && rm llvm.sh \
-    && apt-get autoremove -y clang-15 lldb-15 lld-15 \
+    && apt-get autoremove -y clang-16 lldb-16 lld-16 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* 
-ENV PATH="/usr/lib/llvm-15/bin:${PATH}"
+ENV PATH="/usr/lib/llvm-16/bin:${PATH}"
 # install cmake
 RUN wget https://apt.kitware.com/kitware-archive.sh \
     && bash kitware-archive.sh \
