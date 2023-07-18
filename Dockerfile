@@ -45,4 +45,7 @@ RUN apt-get update \
 RUN apt-get update && sudo apt-get install -y libgoogle-glog-dev libgflags-dev libatlas-base-dev libeigen3-dev libsuitesparse-dev \
     && wget -q -O - http://ceres-solver.org/ceres-solver-2.1.0.tar.gz | tar -zxv \
     && cd ceres-solver-2.1.0 && cmake -B build && cmake --build build && cmake --install build \
-    && cd .. && rm ceres-solver-2.1.0 -rf
+    && cd .. && rm ceres-solver-2.1.0 -rf \
+    && apt-get autoremove -y \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
