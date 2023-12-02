@@ -1,11 +1,11 @@
 name: Docker Build And Push
 
 on:
+  workflow_dispatch:
   push:
     paths: 
       - .github/workflows/docker.yml
       - Dockerfile
-      
   pull_request:
     paths: 
       - .github/workflows/docker.yml
