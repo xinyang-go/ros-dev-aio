@@ -21,7 +21,7 @@ RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test \
     && rm -rf /var/lib/apt/lists/*
 # install llvm-18
 RUN wget https://apt.llvm.org/llvm.sh \
-    && bash llvm.sh 18 \
+    && bash llvm.sh 18 all \
     && rm llvm.sh \
     && rm -rf /var/lib/apt/lists/* 
 ENV PATH="/usr/lib/llvm-18/bin:${PATH}"
