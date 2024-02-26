@@ -19,12 +19,12 @@ RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test \
     && update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-11 11 \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
-# install llvm-17
+# install llvm-18
 RUN wget https://apt.llvm.org/llvm.sh \
-    && bash llvm.sh 17 all \
+    && bash llvm.sh 18 \
     && rm llvm.sh \
     && rm -rf /var/lib/apt/lists/* 
-ENV PATH="/usr/lib/llvm-17/bin:${PATH}"
+ENV PATH="/usr/lib/llvm-18/bin:${PATH}"
 # install cmake
 RUN wget https://apt.kitware.com/kitware-archive.sh \
     && bash kitware-archive.sh \
