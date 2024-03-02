@@ -12,11 +12,12 @@ RUN apt-get update \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
 # install gcc-11
-RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test \
+RUN if [ $ROS_DISTRO = "humble" ]; then GCC_VER=13; else GCC_VER=11; fi \
+    && add-apt-repository -y ppa:ubuntu-toolchain-r/test \
     && apt-get update \
-    && apt-get install -y gcc-11 g++-11 gdb ccache build-essential ninja-build \
-    && update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 11 \
-    && update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-11 11 \
+    && apt-get install -y gcc-$GCC_VER g++-$GCC_VER gdb ccache build-essential ninja-build \
+    && update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-$GCC_VER $GCC_VER \
+    && update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-$GCC_VER $GCC_VER \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
 # install llvm-18
