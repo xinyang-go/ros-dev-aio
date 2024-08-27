@@ -37,5 +37,6 @@ RUN wget https://apt.kitware.com/kitware-archive.sh \
 RUN apt-get update \
     && apt-get install -y ros-${ROS_DISTRO}-pcl-ros ros-${ROS_DISTRO}-vision-opencv \
                           ros-${ROS_DISTRO}-rosbridge-suite ros-${ROS_DISTRO}-foxglove-bridge \
+    && if [ $ROS_DISTRO = "humble" ]; then apt-get install -y ros-${ROS_DISTRO}-rosbag2-storage-mcap; fi \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
